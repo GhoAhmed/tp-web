@@ -1,0 +1,2372 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP & Mini-Projets — HTML5 & CSS3</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2744;
+            --navy-light: #2a3a5e;
+            --gold: #c8922a;
+            --gold-light: #e8b84b;
+            --accent: #3b6fd4;
+            --accent2: #2d9e75;
+            --red: #c0392b;
+            --purple: #7c3aed;
+            --orange: #d97706;
+            --bg: #fafaf7;
+            --bg2: #f3f2ec;
+            --bg3: #eceae0;
+            --text: #1c1c1c;
+            --text2: #444;
+            --text3: #777;
+            --border: #d8d5c8;
+            --code-bg: #1e2438;
+            --code-text: #e8eaf0;
+            --code-green: #87d996;
+            --code-blue: #7ec8e3;
+            --code-orange: #f0a06a;
+            --code-purple: #c99ef0;
+            --code-yellow: #f0d97a;
+            --code-comment: #6b7aaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        @media print {
+            .page-break {
+                page-break-before: always;
+            }
+        }
+
+        /* ─── COVER ─── */
+        .cover {
+            background: var(--navy);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-stripe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--gold);
+        }
+
+        .cover-deco {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 320px;
+            height: 320px;
+            background: var(--gold);
+            clip-path: polygon(100% 0, 0 0, 100% 100%);
+            opacity: 0.7;
+        }
+
+        .cover-deco2 {
+            position: absolute;
+            bottom: 0;
+            left: 60px;
+            width: 180px;
+            height: 180px;
+            background: var(--accent);
+            clip-path: polygon(0 100%, 0 0, 100% 100%);
+            opacity: 0.25;
+        }
+
+        .cover-header {
+            padding: 36px 56px 0;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .cover-logo {
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        .cover-inst {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.65;
+            line-height: 1.6;
+        }
+
+        .cover-body {
+            flex: 1;
+            padding: 48px 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .cover-type {
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cover-type::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--gold-light);
+        }
+
+        .cover-rule {
+            width: 72px;
+            height: 3px;
+            background: var(--gold);
+            margin: 18px 0 26px;
+        }
+
+        .cover-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 46px;
+            font-weight: 600;
+            line-height: 1.12;
+            margin-bottom: 10px;
+        }
+
+        .cover-sub {
+            font-size: 20px;
+            color: var(--gold-light);
+            margin-bottom: 40px;
+        }
+
+        .cover-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .badge {
+            padding: 5px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.75);
+            letter-spacing: 0.04em;
+        }
+
+        .badge.gold {
+            border-color: var(--gold);
+            color: var(--gold-light);
+        }
+
+        .cover-stats {
+            display: flex;
+            gap: 48px;
+        }
+
+        .stat-item label {
+            display: block;
+            font-size: 9px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            opacity: 0.7;
+            margin-bottom: 4px;
+        }
+
+        .stat-item span {
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'Source Serif 4', serif;
+        }
+
+        .stat-item small {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-left: 4px;
+        }
+
+        .cover-footer {
+            padding: 20px 56px;
+            z-index: 1;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            opacity: 0.55;
+        }
+
+        /* ─── TP SECTION HEADER ─── */
+        .tp-section {
+            background: var(--bg2);
+            min-height: 100vh;
+            padding: 56px 64px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .tp-chapter-banner {
+            background: var(--navy);
+            color: white;
+            margin: -56px -64px 48px;
+            padding: 40px 64px 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tp-chapter-banner::after {
+            content: attr(data-ch);
+            position: absolute;
+            right: 56px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Source Serif 4', serif;
+            font-size: 100px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.06);
+            pointer-events: none;
+        }
+
+        .tp-chapter-label {
+            font-size: 9.5px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .tp-chapter-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .tp-chapter-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 500px;
+            margin-top: 8px;
+        }
+
+        /* ─── EXERCISE CARD ─── */
+        .ex-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 32px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .ex-header {
+            padding: 18px 24px 14px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .ex-header-left {
+            flex: 1;
+        }
+
+        .ex-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: white;
+            background: var(--navy);
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .ex-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.3;
+        }
+
+        .ex-meta {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 10.5px;
+            padding: 2px 9px;
+            border-radius: 12px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .tag-html {
+            background: #fff0e0;
+            color: #a05a10;
+            border: 1px solid #f5c87a;
+        }
+
+        .tag-css {
+            background: #e0ecff;
+            color: #1a4a9e;
+            border: 1px solid #a8c4f5;
+        }
+
+        .tag-flex {
+            background: #e8f8ff;
+            color: #0a5a7a;
+            border: 1px solid #7dd0f0;
+        }
+
+        .tag-grid {
+            background: #f0e8ff;
+            color: #5a1a8a;
+            border: 1px solid #c4a8f5;
+        }
+
+        .tag-rwd {
+            background: #e8fff0;
+            color: #0a5a2a;
+            border: 1px solid #7df0a8;
+        }
+
+        .tag-form {
+            background: #fff0f5;
+            color: #8a1a3a;
+            border: 1px solid #f5a8c4;
+        }
+
+        .tag-anim {
+            background: #fff8e0;
+            color: #7a5a00;
+            border: 1px solid #f0d870;
+        }
+
+        .difficulty {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: var(--text3);
+        }
+
+        .diff-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .diff-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .diff-dot.filled.easy {
+            background: var(--accent2);
+        }
+
+        .diff-dot.filled.medium {
+            background: var(--orange);
+        }
+
+        .diff-dot.filled.hard {
+            background: var(--red);
+        }
+
+        .ex-body {
+            padding: 20px 24px;
+        }
+
+        /* ─── OBJECTIVE BOX ─── */
+        .obj-box {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8ecf8 100%);
+            border: 1px solid #c8d4f0;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            margin-bottom: 18px;
+        }
+
+        .obj-label {
+            font-size: 9px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .obj-text {
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.65;
+        }
+
+        /* ─── CONSIGNE ─── */
+        .consigne {
+            font-size: 13.5px;
+            color: var(--text2);
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        /* ─── TASK LIST ─── */
+        .task-list {
+            list-style: none;
+            margin: 0 0 18px;
+        }
+
+        .task-list li {
+            padding: 8px 0 8px 32px;
+            position: relative;
+            font-size: 13.5px;
+            color: var(--text2);
+            border-bottom: 1px dashed var(--bg3);
+            line-height: 1.6;
+        }
+
+        .task-list li:last-child {
+            border-bottom: none;
+        }
+
+        .task-list li::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 12px;
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            background: white;
+        }
+
+        .task-list li.bonus::before {
+            border-color: var(--gold);
+        }
+
+        .task-list li.bonus {
+            color: var(--text3);
+        }
+
+        .task-list li.bonus .bonus-tag {
+            font-size: 9.5px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+            margin-right: 6px;
+        }
+
+        /* ─── CODE BLOCK ─── */
+        .code-block {
+            background: var(--code-bg);
+            border-radius: 10px;
+            margin: 14px 0;
+            overflow: hidden;
+        }
+
+        .code-header {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 7px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .code-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+
+        .code-dot:nth-child(1) {
+            background: #ff5f57;
+        }
+
+        .code-dot:nth-child(2) {
+            background: #ffbd2e;
+        }
+
+        .code-dot:nth-child(3) {
+            background: #28c840;
+        }
+
+        .code-lang {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 0.08em;
+        }
+
+        .code-body {
+            padding: 16px 18px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--code-text);
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .t {
+            color: var(--code-orange);
+        }
+
+        .a {
+            color: var(--code-blue);
+        }
+
+        .v {
+            color: var(--code-green);
+        }
+
+        .p {
+            color: var(--code-purple);
+        }
+
+        .c {
+            color: var(--code-comment);
+            font-style: italic;
+        }
+
+        .s {
+            color: var(--code-yellow);
+        }
+
+        .kw {
+            color: var(--code-purple);
+        }
+
+        .num {
+            color: var(--code-orange);
+        }
+
+        /* ─── VISUAL PREVIEW ─── */
+        .preview-box {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 14px 0;
+        }
+
+        .preview-label {
+            background: var(--bg3);
+            padding: 6px 14px;
+            font-size: 9.5px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text3);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .preview-label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent2);
+            border-radius: 50%;
+        }
+
+        .preview-content {
+            padding: 24px;
+            background: white;
+        }
+
+        /* ─── HINT BOX ─── */
+        .hint-box {
+            background: #fffbf0;
+            border: 1px solid #f0d870;
+            border-left: 4px solid var(--orange);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0;
+        }
+
+        .hint-label {
+            font-size: 9px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .hint-box p {
+            font-size: 12.5px;
+            color: var(--text2);
+            margin: 0;
+        }
+
+        /* ─── REMARK ─── */
+        .remark-box {
+            background: #fff8e6;
+            border: 1px solid #e8c97a;
+            border-left: 4px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0;
+        }
+
+        .remark-label {
+            font-size: 9px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .remark-box p {
+            font-size: 12.5px;
+            color: var(--text);
+            margin: 0;
+        }
+
+        /* ─── MINI PROJECT CARD ─── */
+        .project-card {
+            border: 2px solid var(--navy);
+            border-radius: 14px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(26, 39, 68, 0.1);
+        }
+
+        .project-header {
+            background: var(--navy);
+            color: white;
+            padding: 28px 28px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::after {
+            content: attr(data-icon);
+            position: absolute;
+            right: 28px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 64px;
+            opacity: 0.12;
+        }
+
+        .project-label {
+            font-size: 9px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .project-tagline {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .project-body {
+            padding: 28px;
+            background: white;
+        }
+
+        .project-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .spec-item {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 14px;
+        }
+
+        .spec-item .spec-label {
+            font-size: 9px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text3);
+            margin-bottom: 5px;
+        }
+
+        .spec-item .spec-value {
+            font-size: 13px;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .project-requirements {
+            margin-bottom: 22px;
+        }
+
+        .req-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .req-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .req-list {
+            list-style: none;
+        }
+
+        .req-list li {
+            padding: 7px 0 7px 24px;
+            position: relative;
+            font-size: 13px;
+            color: var(--text2);
+            border-bottom: 1px solid var(--bg3);
+            line-height: 1.6;
+        }
+
+        .req-list li:last-child {
+            border-bottom: none;
+        }
+
+        .req-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent2);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .req-list li.bonus-req::before {
+            content: '★';
+            color: var(--gold);
+        }
+
+        .req-list li.bonus-req {
+            color: var(--text3);
+        }
+
+        /* ─── WIREFRAME ─── */
+        .wireframe {
+            background: var(--bg3);
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .wf-label {
+            font-size: 9.5px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text3);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .wf-browser {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .wf-titlebar {
+            background: var(--bg3);
+            padding: 6px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .wf-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .wf-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .wf-url {
+            flex: 1;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 10px;
+            color: var(--text3);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ─── SECTION DIVIDER ─── */
+        .sec-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 40px 0;
+        }
+
+        /* ─── SECTION HEADING ─── */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid var(--navy);
+        }
+
+        .section-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--gold);
+            font-weight: 600;
+            background: var(--bg3);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        /* ─── EVALUATION TABLE ─── */
+        .eval-grid {
+            display: grid;
+            grid-template-columns: 1fr 80px;
+            gap: 0;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 16px 0;
+        }
+
+        .eval-row {
+            display: contents;
+        }
+
+        .eval-row>div {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--bg3);
+            font-size: 13px;
+        }
+
+        .eval-row:last-child>div {
+            border-bottom: none;
+        }
+
+        .eval-row.header>div {
+            background: var(--navy);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .eval-row:nth-child(even)>div {
+            background: var(--bg2);
+        }
+
+        .eval-pts {
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            background: var(--bg3);
+            color: var(--navy);
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: var(--text2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══════════════════════════════════════
+     COUVERTURE
+══════════════════════════════════════ -->
+    <div class="cover">
+        <div class="cover-stripe"></div>
+        <div class="cover-deco"></div>
+        <div class="cover-deco2"></div>
+
+        <div class="cover-header">
+            <div class="cover-logo">IT</div>
+            <div class="cover-inst">
+                ISET KASSERINE<br>
+                Département Technologies de l'Informatique
+            </div>
+        </div>
+
+        <div class="cover-body">
+            <div class="cover-type">Travaux Pratiques</div>
+            <div class="cover-rule"></div>
+            <div class="cover-title">Exercices &amp; Mini-Projets<br>HTML5 &amp; CSS3</div>
+            <div class="cover-sub">Du composant à la page complète</div>
+
+            <div class="cover-badges">
+                <span class="badge gold">HTML5</span>
+                <span class="badge gold">CSS3</span>
+                <span class="badge">Flexbox</span>
+                <span class="badge">CSS Grid</span>
+                <span class="badge">Responsive</span>
+                <span class="badge">Animations</span>
+                <span class="badge">Formulaires</span>
+            </div>
+
+            <div class="cover-stats">
+                <div class="stat-item">
+                    <label>Exercices TP</label>
+                    <span>18<small>exercices</small></span>
+                </div>
+                <div class="stat-item">
+                    <label>Mini-Projets</label>
+                    <span>5<small>projets</small></span>
+                </div>
+                <div class="stat-item">
+                    <label>Niveau</label>
+                    <span>L1<small>informatique</small></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cover-footer">
+            <span>Ahmed Ghodhbani — ahmed.ghodhbeni@gmail.com</span>
+            <span>ISET Kasserine · 2024/2025</span>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════════════
+     TP 1 — HTML5 : BASES
+══════════════════════════════════════════════════════ -->
+    <div class="tp-section page-break">
+        <div class="tp-chapter-banner" data-ch="TP1">
+            <div class="tp-chapter-label">Travaux Pratiques · Séance 1</div>
+            <div class="tp-chapter-title">HTML5 : Structure, Texte &amp; Liens</div>
+            <div class="tp-chapter-desc">Maîtriser les balises essentielles, la structure d'un document HTML5 et la
+                création d'hyperliens.</div>
+        </div>
+
+        <!-- Ex 1 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 1.1</span>
+                    <div class="ex-title">Ma première page HTML5</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-html">HTML5</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Facile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Créer un document HTML5 valide avec la structure minimale correcte, en
+                        utilisant les balises de base pour présenter votre profil personnel.</div>
+                </div>
+
+                <p class="consigne">Créez un fichier <code>profil.html</code> contenant une page de présentation
+                    personnelle respectant les contraintes suivantes :</p>
+
+                <ul class="task-list">
+                    <li>Déclarer correctement le doctype HTML5 et l'encodage UTF-8</li>
+                    <li>Définir la langue de la page en français (<code>lang="fr"</code>)</li>
+                    <li>Donner un titre significatif affiché dans l'onglet</li>
+                    <li>Créer un titre <code>&lt;h1&gt;</code> avec votre nom, et un sous-titre <code>&lt;h2&gt;</code>
+                        avec votre filière</li>
+                    <li>Rédiger un paragraphe de présentation d'au moins 3 phrases</li>
+                    <li>Lister 5 compétences avec <code>&lt;ul&gt;</code>, et vos 3 matières préférées avec
+                        <code>&lt;ol&gt;</code></li>
+                    <li>Ajouter une ligne de séparation <code>&lt;hr&gt;</code> avant le pied de page</li>
+                    <li>Terminer par un paragraphe avec votre email en <code>&lt;strong&gt;</code></li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Ajouter des balises
+                        <code>&lt;mark&gt;</code>, <code>&lt;sub&gt;</code>, <code>&lt;sup&gt;</code> de manière
+                        pertinente</li>
+                </ul>
+
+                <div class="hint-box">
+                    <div class="hint-label">Rappel — Structure minimale</div>
+                    <p>La page doit commencer par <code>&lt;!DOCTYPE html&gt;</code>, contenir les balises
+                        <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> (avec <code>&lt;meta charset&gt;</code> et
+                        <code>&lt;title&gt;</code>) et <code>&lt;body&gt;</code>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ex 2 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 1.2</span>
+                    <div class="ex-title">Navigation inter-pages</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-html">HTML5</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Moyen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Créer un mini-site de 3 pages liées entre elles par des hyperliens, en
+                        utilisant les chemins relatifs et les ancres.</div>
+                </div>
+
+                <p class="consigne">Créez un dossier <code>mon-site/</code> contenant :</p>
+
+                <ul class="task-list">
+                    <li>Un fichier <code>index.html</code> (page d'accueil) avec un menu de navigation en
+                        <code>&lt;nav&gt;</code> contenant 3 liens vers les 3 pages</li>
+                    <li>Un fichier <code>apropos.html</code> avec votre biographie, divisée en sections avec des IDs
+                        (<code>formation</code>, <code>experience</code>, <code>loisirs</code>)</li>
+                    <li>Un fichier <code>contact.html</code> avec votre email (<code>mailto:</code>), téléphone
+                        (<code>tel:</code>), et un lien vers un réseau social (<code>target="_blank"</code>)</li>
+                    <li>Sur chaque page : un lien "Retour à l'accueil" et un pied de page identique</li>
+                    <li>Sur la page <code>apropos.html</code> : une table des matières avec des ancres
+                        (<code>#formation</code>, <code>#experience</code>…)</li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Ajouter un lien <code>mailto:</code> avec
+                        sujet et corps pré-remplis via les paramètres URL</li>
+                </ul>
+
+                <div class="remark-box">
+                    <div class="remark-label">Structure du dossier</div>
+                    <p>Organiser les fichiers ainsi : <code>mon-site/index.html</code> ·
+                        <code>mon-site/apropos.html</code> · <code>mon-site/contact.html</code>. Utiliser des chemins
+                        relatifs pour les liens.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ex 3 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 1.3</span>
+                    <div class="ex-title">Tableau de notes d'étudiants</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-html">HTML5</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Moyen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Créer un tableau HTML sémantique complet avec fusion de cellules, en-têtes et
+                        pied de tableau.</div>
+                </div>
+
+                <p class="consigne">Créez un fichier <code>notes.html</code> contenant un tableau des notes de 5
+                    étudiants dans 4 matières.</p>
+
+                <ul class="task-list">
+                    <li>Utiliser <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> et <code>&lt;tfoot&gt;</code>
+                    </li>
+                    <li>Les en-têtes doivent utiliser <code>&lt;th&gt;</code> avec <code>scope="col"</code> ou
+                        <code>scope="row"</code></li>
+                    <li>Ajouter un <code>&lt;caption&gt;</code> décrivant le tableau</li>
+                    <li>La première colonne = noms (avec <code>&lt;th scope="row"&gt;</code>)</li>
+                    <li>Les 4 colonnes suivantes = notes (Maths, Physique, Informatique, Anglais)</li>
+                    <li>La dernière colonne = moyenne calculée manuellement</li>
+                    <li>Le <code>&lt;tfoot&gt;</code> doit afficher la moyenne de classe pour chaque matière</li>
+                    <li>Fusionner la cellule "Moyenne de classe" sur les deux premières colonnes avec
+                        <code>colspan="2"</code></li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Ajouter une cellule fusionnée sur plusieurs
+                        lignes avec <code>rowspan</code> pour regrouper des étudiants par groupe</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════════════
+     TP 2 — FORMULAIRES HTML5
+══════════════════════════════════════════════════════ -->
+    <div class="tp-section page-break">
+        <div class="tp-chapter-banner" data-ch="TP2">
+            <div class="tp-chapter-label">Travaux Pratiques · Séance 2</div>
+            <div class="tp-chapter-title">Formulaires HTML5 Avancés</div>
+            <div class="tp-chapter-desc">Créer des formulaires complets avec validation native, types d'input HTML5 et
+                accessibilité.</div>
+        </div>
+
+        <!-- Ex 4 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 2.1</span>
+                    <div class="ex-title">Formulaire d'inscription étudiant</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-html">HTML5</span>
+                        <span class="tag tag-form">Formulaires</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Moyen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Maîtriser tous les types d'input HTML5, les attributs de validation et les
+                        bonnes pratiques d'accessibilité des formulaires.</div>
+                </div>
+
+                <p class="consigne">Créez un fichier <code>inscription.html</code> contenant un formulaire d'inscription
+                    complet pour ISET Kasserine :</p>
+
+                <ul class="task-list">
+                    <li>Champ <strong>Nom</strong> (type text) : <code>required</code>, <code>minlength="3"</code>,
+                        <code>maxlength="50"</code></li>
+                    <li>Champ <strong>Prénom</strong> (type text) : mêmes contraintes</li>
+                    <li>Champ <strong>Date de naissance</strong> (type date) : doit être après 01/01/1990</li>
+                    <li>Champ <strong>Email</strong> (type email) : <code>required</code></li>
+                    <li>Champ <strong>Téléphone</strong> (type tel) : avec <code>pattern="[0-9]{8}"</code> et
+                        <code>placeholder="12345678"</code></li>
+                    <li>Menu <strong>Département</strong> (select) : au moins 5 options dont une option vide par défaut
+                    </li>
+                    <li>Choix <strong>Niveau</strong> (radio buttons) : L1, L2, L3</li>
+                    <li>Cases <strong>Langues</strong> (checkboxes) : Arabe, Français, Anglais, Autre</li>
+                    <li>Champ <strong>Mot de passe</strong> : <code>minlength="8"</code>, et un champ confirmation</li>
+                    <li>Champ <strong>Photo</strong> (type file) : accepte uniquement JPG/PNG</li>
+                    <li>Zone <strong>Observations</strong> (textarea) : 5 lignes</li>
+                    <li>Tout champ doit avoir un <code>&lt;label&gt;</code> lié via <code>for</code>/<code>id</code>
+                    </li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Regrouper les champs avec
+                        <code>&lt;fieldset&gt;</code> et <code>&lt;legend&gt;</code> : "Informations personnelles",
+                        "Scolarité", "Sécurité"</li>
+                </ul>
+
+                <div class="hint-box">
+                    <div class="hint-label">Conseil accessibilité</div>
+                    <p>Chaque <code>&lt;input&gt;</code> doit avoir un <code>id</code> unique correspondant au
+                        <code>for</code> de son <code>&lt;label&gt;</code>. Ajouter <code>autocomplete</code> sur les
+                        champs courants (name, email, tel…).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ex 5 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 2.2</span>
+                    <div class="ex-title">Calculatrice de notes en HTML pur</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-html">HTML5</span>
+                        <span class="tag tag-form">Formulaires</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot filled medium"></div>
+                            </div>
+                            <span>Difficile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Utiliser les types <code>number</code> et <code>range</code>, les attributs
+                        <code>min</code>/<code>max</code>/<code>step</code>, et afficher un résultat avec
+                        <code>&lt;output&gt;</code>.</div>
+                </div>
+
+                <ul class="task-list">
+                    <li>Créer 5 champs <code>type="number"</code> pour 5 matières (<code>min="0"</code>
+                        <code>max="20"</code>)</li>
+                    <li>Ajouter un champ <code>type="range"</code> pour le coefficient de chaque matière (1 à 4)</li>
+                    <li>Utiliser <code>&lt;output&gt;</code> pour afficher la moyenne pondérée (calculée via l'attribut
+                        <code>oninput</code>)</li>
+                    <li>Afficher un message de résultat (Admis ≥10 / Ajourné) dans un <code>&lt;output&gt;</code></li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Ajouter un <code>type="color"</code> pour
+                        personnaliser la couleur d'affichage du résultat</li>
+                </ul>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-dots">
+                            <div class="code-dot"></div>
+                            <div class="code-dot"></div>
+                            <div class="code-dot"></div>
+                        </div>
+                        <span class="code-lang">HTML5 — Exemple output</span>
+                    </div>
+                    <div class="code-body"><span class="t">&lt;form</span> <span class="a">oninput=</span><span
+                            class="v">"resultat.value = (parseInt(note1.value) + parseInt(note2.value)) / 2"</span><span
+                            class="t">&gt;</span>
+                        <span class="t">&lt;input</span> <span class="a">type=</span><span class="v">"number"</span>
+                        <span class="a">id=</span><span class="v">"note1"</span> <span class="a">name=</span><span
+                            class="v">"note1"</span> <span class="a">min=</span><span class="v">"0"</span> <span
+                            class="a">max=</span><span class="v">"20"</span><span class="t">&gt;</span>
+                        <span class="t">&lt;input</span> <span class="a">type=</span><span class="v">"number"</span>
+                        <span class="a">id=</span><span class="v">"note2"</span> <span class="a">name=</span><span
+                            class="v">"note2"</span> <span class="a">min=</span><span class="v">"0"</span> <span
+                            class="a">max=</span><span class="v">"20"</span><span class="t">&gt;</span>
+                        Moyenne : <span class="t">&lt;output</span> <span class="a">name=</span><span
+                            class="v">"resultat"</span><span class="t">&gt;</span>—<span
+                            class="t">&lt;/output&gt;</span>
+                        <span class="t">&lt;/form&gt;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════════════
+     TP 3 — CSS3 : SÉLECTEURS & BOX MODEL
+══════════════════════════════════════════════════════ -->
+    <div class="tp-section page-break">
+        <div class="tp-chapter-banner" data-ch="TP3">
+            <div class="tp-chapter-label">Travaux Pratiques · Séance 3</div>
+            <div class="tp-chapter-title">CSS3 : Sélecteurs, Typographie &amp; Box Model</div>
+            <div class="tp-chapter-desc">Appliquer les sélecteurs CSS, personnaliser la typographie et maîtriser le
+                modèle de boîte.</div>
+        </div>
+
+        <!-- Ex 6 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 3.1</span>
+                    <div class="ex-title">Chasse aux sélecteurs</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-css">CSS3</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Facile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Écrire le sélecteur CSS correct pour cibler précisément chaque élément décrit,
+                        sans modifier le HTML.</div>
+                </div>
+
+                <p class="consigne">Étant donné le HTML ci-dessous, écrire les règles CSS pour :</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-dots">
+                            <div class="code-dot"></div>
+                            <div class="code-dot"></div>
+                            <div class="code-dot"></div>
+                        </div>
+                        <span class="code-lang">HTML de départ — ne pas modifier</span>
+                    </div>
+                    <div class="code-body"><span class="t">&lt;nav</span> <span class="a">id=</span><span
+                            class="v">"menu"</span><span class="t">&gt;</span>
+                        <span class="t">&lt;ul&gt;</span>
+                        <span class="t">&lt;li&gt;</span><span class="t">&lt;a</span> <span class="a">href=</span><span
+                            class="v">"#"</span><span class="t">&gt;</span>Accueil<span
+                            class="t">&lt;/a&gt;&lt;/li&gt;</span>
+                        <span class="t">&lt;li</span> <span class="a">class=</span><span class="v">"actif"</span><span
+                            class="t">&gt;</span><span class="t">&lt;a</span> <span class="a">href=</span><span
+                            class="v">"#"</span><span class="t">&gt;</span>Cours<span
+                            class="t">&lt;/a&gt;&lt;/li&gt;</span>
+                        <span class="t">&lt;li&gt;</span><span class="t">&lt;a</span> <span class="a">href=</span><span
+                            class="v">"#"</span><span class="t">&gt;</span>TP<span
+                            class="t">&lt;/a&gt;&lt;/li&gt;</span>
+                        <span class="t">&lt;li&gt;</span><span class="t">&lt;a</span> <span class="a">href=</span><span
+                            class="v">"#"</span><span class="t">&gt;</span>Contact<span
+                            class="t">&lt;/a&gt;&lt;/li&gt;</span>
+                        <span class="t">&lt;/ul&gt;</span>
+                        <span class="t">&lt;/nav&gt;</span>
+                        <span class="t">&lt;article&gt;</span>
+                        <span class="t">&lt;h2&gt;</span>Titre<span class="t">&lt;/h2&gt;</span>
+                        <span class="t">&lt;p&gt;</span>Premier paragraphe<span class="t">&lt;/p&gt;</span>
+                        <span class="t">&lt;p&gt;</span>Deuxième paragraphe<span class="t">&lt;/p&gt;</span>
+                        <span class="t">&lt;p</span> <span class="a">class=</span><span class="v">"note"</span><span
+                            class="t">&gt;</span>Note importante<span class="t">&lt;/p&gt;</span>
+                        <span class="t">&lt;/article&gt;</span>
+                    </div>
+                </div>
+
+                <ul class="task-list">
+                    <li>Mettre tous les liens (<code>&lt;a&gt;</code>) du nav en blanc sans soulignement</li>
+                    <li>Le <code>&lt;li&gt;</code> avec la classe <code>actif</code> : fond doré</li>
+                    <li>Le premier <code>&lt;p&gt;</code> de l'article seulement : <code>font-weight: bold</code></li>
+                    <li>Tous les <code>&lt;p&gt;</code> sauf le dernier : <code>color: #333</code></li>
+                    <li>Le <code>&lt;p class="note"&gt;</code> : bordure gauche rouge et fond rose pâle</li>
+                    <li>Au survol (<code>:hover</code>) des liens du nav : couleur or</li>
+                    <li>Ajouter <code>"→ "</code> avant chaque <code>&lt;li&gt;</code> avec <code>::before</code></li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Utiliser <code>:nth-child(odd)</code> pour
+                        alterner les couleurs de fond des <code>&lt;li&gt;</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Ex 7 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 3.2</span>
+                    <div class="ex-title">Carte de profil stylisée</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-css">CSS3</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Moyen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Utiliser le Box Model (margin, padding, border, border-radius) et les ombres
+                        CSS pour créer une carte de profil visuellement soignée.</div>
+                </div>
+
+                <div class="wireframe">
+                    <div class="wf-label">Rendu attendu — Carte de profil</div>
+                    <div
+                        style="max-width:300px;margin:0 auto;background:white;border-radius:16px;padding:32px 24px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,0.12);border:1px solid #e8e5d8">
+                        <div
+                            style="width:80px;height:80px;border-radius:50%;background:#e8ecf8;border:3px solid #3b6fd4;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#3b6fd4">
+                            A</div>
+                        <div style="font-weight:700;font-size:18px;color:#1a2744">Ahmed Ghodhbani</div>
+                        <div
+                            style="font-size:12px;color:#777;margin:4px 0 16px;padding:4px 12px;background:#e8ecf8;border-radius:12px;display:inline-block">
+                            Étudiant L1 · Informatique</div>
+                        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px">
+                            <span
+                                style="font-size:11px;padding:3px 10px;background:#e0ecff;color:#1a4a9e;border-radius:10px">HTML5</span>
+                            <span
+                                style="font-size:11px;padding:3px 10px;background:#edf9f3;color:#0a5a2a;border-radius:10px">CSS3</span>
+                            <span
+                                style="font-size:11px;padding:3px 10px;background:#fff0e0;color:#a05a10;border-radius:10px">JavaScript</span>
+                        </div>
+                        <div style="border-top:1px solid #e8e5d8;padding-top:14px;font-size:12px;color:#777">
+                            ahmed@iset.tn</div>
+                    </div>
+                </div>
+
+                <ul class="task-list">
+                    <li>Largeur fixe de 300px, centré sur la page avec <code>margin: 0 auto</code></li>
+                    <li>Fond blanc, <code>border-radius: 16px</code>, <code>box-shadow</code> subtil</li>
+                    <li>Un cercle pour l'avatar : <code>border-radius: 50%</code>, bordure colorée</li>
+                    <li>Le badge de filière : <code>border-radius: 20px</code>, padding horizontal important</li>
+                    <li>Les tags de compétences : inline-flex, padding, border-radius pill</li>
+                    <li>Séparateur <code>border-top</code> avant l'email</li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Ajouter <code>:hover</code> avec
+                        <code>transform: translateY(-4px)</code> et transition de 0.3s</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════════════
+     TP 4 — FLEXBOX
+══════════════════════════════════════════════════════ -->
+    <div class="tp-section page-break">
+        <div class="tp-chapter-banner" data-ch="TP4">
+            <div class="tp-chapter-label">Travaux Pratiques · Séance 4</div>
+            <div class="tp-chapter-title">Mise en page avec Flexbox</div>
+            <div class="tp-chapter-desc">Construire des layouts fluides et des composants alignés avec CSS Flexbox.
+            </div>
+        </div>
+
+        <!-- Ex 8 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 4.1</span>
+                    <div class="ex-title">Barre de navigation Flexbox</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-css">CSS3</span>
+                        <span class="tag tag-flex">Flexbox</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Moyen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Créer une barre de navigation professionnelle avec Flexbox : logo à gauche,
+                        menu centré ou à droite, bouton CTA.</div>
+                </div>
+
+                <div class="wireframe">
+                    <div class="wf-label">Mise en page attendue</div>
+                    <div
+                        style="background:#1a2744;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;border-radius:6px">
+                        <div
+                            style="color:#e8b84b;font-weight:700;font-family:'JetBrains Mono',monospace;font-size:14px">
+                            ISET</div>
+                        <div style="display:flex;gap:24px">
+                            <span style="color:rgba(255,255,255,0.75);font-size:12px">Accueil</span>
+                            <span style="color:white;font-size:12px;font-weight:600">Cours</span>
+                            <span style="color:rgba(255,255,255,0.75);font-size:12px">TP</span>
+                            <span style="color:rgba(255,255,255,0.75);font-size:12px">Contact</span>
+                        </div>
+                        <div
+                            style="background:#c8922a;color:white;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:600">
+                            Connexion</div>
+                    </div>
+                </div>
+
+                <ul class="task-list">
+                    <li>Le <code>&lt;nav&gt;</code> est un conteneur flex avec
+                        <code>justify-content: space-between</code></li>
+                    <li>Logo à gauche : <code>flex-shrink: 0</code> pour ne pas rétrécir</li>
+                    <li>La liste <code>&lt;ul&gt;</code> : flex avec <code>gap: 24px</code> et sans puces</li>
+                    <li>Le bouton CTA : fond doré, coins arrondis, transition au hover</li>
+                    <li>Hauteur fixe de 64px, fond sombre, position sticky en haut</li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> En dessous de 768px (<code>@media</code>),
+                        masquer le menu et afficher un bouton burger ☰</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Ex 9 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 4.2</span>
+                    <div class="ex-title">Galerie de cartes flex-wrap</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-css">CSS3</span>
+                        <span class="tag tag-flex">Flexbox</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Moyen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Créer une galerie de 6 cartes cours avec Flexbox, <code>flex-wrap</code> et
+                        <code>flex-basis</code> pour un affichage adaptatif.</div>
+                </div>
+
+                <ul class="task-list">
+                    <li>Le conteneur parent : <code>display: flex; flex-wrap: wrap; gap: 24px</code></li>
+                    <li>Chaque carte : <code>flex: 1 1 280px</code> (grandit, rétrécit, base 280px)</li>
+                    <li>Chaque carte contient : une zone couleur en haut (image simulée), un titre, une description
+                        courte, un badge de difficulté, un bouton</li>
+                    <li>Les cartes s'alignent en bas via <code>align-items: stretch</code> sur le parent</li>
+                    <li>Le bouton de chaque carte doit être en bas grâce à <code>margin-top: auto</code></li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Faire que la première carte occupe toute la
+                        largeur avec <code>flex: 1 1 100%</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Ex 10 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 4.3</span>
+                    <div class="ex-title">Centrage parfait avec Flexbox</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-css">CSS3</span>
+                        <span class="tag tag-flex">Flexbox</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Facile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Reproduire 5 mises en page classiques utilisant différentes valeurs de
+                        <code>justify-content</code> et <code>align-items</code>.</div>
+                </div>
+
+                <p class="consigne">Pour chaque section ci-dessous, créer un conteneur de 400×200px avec 4 boîtes
+                    colorées et reproduire exactement le résultat visuel :</p>
+
+                <ul class="task-list">
+                    <li><strong>Mise en page A :</strong> tous les items collés à gauche (<code>flex-start</code>)</li>
+                    <li><strong>Mise en page B :</strong> items espacés uniformément (<code>space-between</code>)</li>
+                    <li><strong>Mise en page C :</strong> parfaitement centré horizontal + vertical</li>
+                    <li><strong>Mise en page D :</strong> items en colonne, le dernier poussé tout en bas</li>
+                    <li><strong>Mise en page E :</strong> items en ligne avec tailles différentes, alignés en bas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════════════
+     TP 5 — CSS GRID & RESPONSIVE
+══════════════════════════════════════════════════════ -->
+    <div class="tp-section page-break">
+        <div class="tp-chapter-banner" data-ch="TP5">
+            <div class="tp-chapter-label">Travaux Pratiques · Séance 5</div>
+            <div class="tp-chapter-title">CSS Grid &amp; Responsive Design</div>
+            <div class="tp-chapter-desc">Concevoir des mises en page bi-dimensionnelles avec CSS Grid et les rendre
+                adaptatives avec les Media Queries.</div>
+        </div>
+
+        <!-- Ex 11 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 5.1</span>
+                    <div class="ex-title">Layout classique Header/Sidebar/Main/Footer</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-css">CSS3</span>
+                        <span class="tag tag-grid">Grid</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Moyen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Reproduire une mise en page complète de site web avec
+                        <code>grid-template-areas</code> et rendre le layout responsive.</div>
+                </div>
+
+                <div class="wireframe">
+                    <div class="wf-label">Structure de la page à réaliser</div>
+                    <div
+                        style="display:grid;grid-template-columns:200px 1fr;grid-template-rows:56px 1fr 40px;gap:6px;padding:12px;background:#eceae0;border-radius:6px;min-height:220px;grid-template-areas:'header header' 'sidebar main' 'footer footer'">
+                        <div
+                            style="grid-area:header;background:#1a2744;color:#e8b84b;border-radius:6px;display:flex;align-items:center;padding:0 16px;font-size:12px;font-weight:700">
+                            Header / Navigation</div>
+                        <div
+                            style="grid-area:sidebar;background:#e8ecf8;border-radius:6px;padding:12px;font-size:11px;color:#3b6fd4">
+                            Sidebar<br><span style="color:#777;font-size:10px">Menus latéraux</span></div>
+                        <div
+                            style="grid-area:main;background:white;border-radius:6px;padding:12px;font-size:11px;color:#444">
+                            Zone principale<br><span style="color:#777;font-size:10px">Contenu de la page</span></div>
+                        <div
+                            style="grid-area:footer;background:#333;color:#aaa;border-radius:6px;display:flex;align-items:center;padding:0 12px;font-size:10px">
+                            Footer</div>
+                    </div>
+                </div>
+
+                <ul class="task-list">
+                    <li>Utiliser <code>grid-template-areas</code> avec les zones : <code>header</code>,
+                        <code>sidebar</code>, <code>main</code>, <code>footer</code></li>
+                    <li>Sidebar : largeur fixe 240px. Main : <code>1fr</code>. Header/Footer : pleine largeur</li>
+                    <li>Hauteur minimale de 100vh. Rows : 64px auto 48px</li>
+                    <li>Sur mobile (&lt;768px) : sidebar passe sous le header, tout en une colonne</li>
+                    <li>Sur tablette (&lt;1024px) : sidebar réduite à 180px</li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Ajouter une deuxième sidebar à droite sur
+                        grands écrans (&gt;1200px) avec 3 colonnes : sidebar / main / ads</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Ex 12 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 5.2</span>
+                    <div class="ex-title">Grille responsive auto-adaptative</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-css">CSS3</span>
+                        <span class="tag tag-grid">Grid</span>
+                        <span class="tag tag-rwd">Responsive</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Moyen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Créer une grille de 9 éléments entièrement auto-responsive grâce à
+                        <code>auto-fit</code> et <code>minmax()</code>, sans aucune Media Query.</div>
+                </div>
+
+                <ul class="task-list">
+                    <li>Une seule règle CSS pour les colonnes :
+                        <code>grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))</code></li>
+                    <li>Créer 9 cellules avec des fonds de couleurs variées</li>
+                    <li>La cellule n°1 doit occuper 2 colonnes : <code>grid-column: span 2</code></li>
+                    <li>La cellule n°5 doit occuper 2 lignes : <code>grid-row: span 2</code></li>
+                    <li>Gap de 16px entre les cellules</li>
+                    <li>Vérifier le comportement sur mobile, tablette, desktop en redimensionnant le navigateur</li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Ajouter <code>grid-auto-rows: 200px</code>
+                        pour des cellules de hauteur égale</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════════════
+     TP 6 — TRANSITIONS & ANIMATIONS
+══════════════════════════════════════════════════════ -->
+    <div class="tp-section page-break">
+        <div class="tp-chapter-banner" data-ch="TP6">
+            <div class="tp-chapter-label">Travaux Pratiques · Séance 6</div>
+            <div class="tp-chapter-title">Transitions, Transformations &amp; Animations CSS3</div>
+            <div class="tp-chapter-desc">Donner vie aux interfaces avec les transitions au survol, les transformations
+                CSS et les animations @keyframes.</div>
+        </div>
+
+        <!-- Ex 13 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 6.1</span>
+                    <div class="ex-title">Boutons interactifs — 4 styles</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-css">CSS3</span>
+                        <span class="tag tag-anim">Animations</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot filled easy"></div>
+                                <div class="diff-dot"></div>
+                            </div>
+                            <span>Moyen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Créer 4 boutons avec des effets hover distincts utilisant
+                        <code>transition</code> et <code>transform</code> uniquement en CSS.</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="preview-label">Effets à reproduire</div>
+                    <div class="preview-content" style="display:flex;gap:16px;flex-wrap:wrap">
+                        <button
+                            style="padding:10px 24px;background:#1a2744;color:white;border:none;border-radius:6px;cursor:pointer;transition:all 0.3s ease;font-size:13px">Bouton
+                            A — Slide</button>
+                        <button
+                            style="padding:10px 24px;background:transparent;color:#1a2744;border:2px solid #1a2744;border-radius:6px;cursor:pointer;font-size:13px">Bouton
+                            B — Outline</button>
+                        <button
+                            style="padding:10px 24px;background:#c8922a;color:white;border:none;border-radius:6px;cursor:pointer;font-size:13px">Bouton
+                            C — Pulse</button>
+                        <button
+                            style="padding:10px 24px;background:#2d9e75;color:white;border:none;border-radius:30px;cursor:pointer;font-size:13px">Bouton
+                            D — Pill</button>
+                    </div>
+                </div>
+
+                <ul class="task-list">
+                    <li><strong>Bouton A</strong> — hover : fond clair + texte sombre + <code>translateY(-2px)</code> +
+                        ombre</li>
+                    <li><strong>Bouton B</strong> — hover : remplissage du fond avec transition (<em>effet fill</em>)
+                        via <code>background</code></li>
+                    <li><strong>Bouton C</strong> — animation <code>@keyframes pulse</code> infinie : scale 1 → 1.05 → 1
+                    </li>
+                    <li><strong>Bouton D</strong> — hover : <code>letter-spacing</code> augmente légèrement + ombre
+                        colorée</li>
+                    <li>Toutes les transitions doivent durer 0.3s avec <code>ease</code> ou <code>ease-in-out</code>
+                    </li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Créer un bouton E avec effet de chargement :
+                        <code>@keyframes</code> de spinner via <code>border-radius</code> et <code>border</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Ex 14 -->
+        <div class="ex-card">
+            <div class="ex-header">
+                <div class="ex-header-left">
+                    <span class="ex-num">Exercice 6.2</span>
+                    <div class="ex-title">Carte avec effet flip 3D</div>
+                    <div class="ex-meta">
+                        <span class="tag tag-css">CSS3</span>
+                        <span class="tag tag-anim">Animations</span>
+                        <div class="difficulty">
+                            <div class="diff-dots">
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot filled medium"></div>
+                                <div class="diff-dot filled medium"></div>
+                            </div>
+                            <span>Difficile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex-body">
+                <div class="obj-box">
+                    <div class="obj-label">Objectif</div>
+                    <div class="obj-text">Réaliser un effet de retournement de carte en 3D au survol avec
+                        <code>perspective</code>, <code>rotateY</code> et <code>backface-visibility</code>.</div>
+                </div>
+
+                <ul class="task-list">
+                    <li>Structure HTML : <code>.carte-wrapper &gt; .carte &gt; .recto + .verso</code></li>
+                    <li>Le <code>.carte-wrapper</code> : <code>perspective: 1000px</code></li>
+                    <li>La <code>.carte</code> : <code>transform-style: preserve-3d; transition: transform 0.6s</code>
+                    </li>
+                    <li>Au hover sur <code>.carte-wrapper</code> : <code>transform: rotateY(180deg)</code></li>
+                    <li>Le <code>.recto</code> et le <code>.verso</code> :
+                        <code>position: absolute; backface-visibility: hidden</code></li>
+                    <li>Le <code>.verso</code> : <code>transform: rotateY(180deg)</code> par défaut</li>
+                    <li>Le recto = présentation de cours, le verso = détails et bouton d'accès</li>
+                    <li class="bonus"><span class="bonus-tag">Bonus</span> Créer 3 cartes dans une grille flex avec des
+                        thèmes de couleur différents</li>
+                </ul>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-dots">
+                            <div class="code-dot"></div>
+                            <div class="code-dot"></div>
+                            <div class="code-dot"></div>
+                        </div>
+                        <span class="code-lang">CSS3 — Flip card structure</span>
+                    </div>
+                    <div class="code-body"><span class="s">.carte-wrapper</span> {
+                        <span class="p">width</span>: 280px; <span class="p">height</span>: 180px;
+                        <span class="p">perspective</span>: 1000px;
+                        }
+                        <span class="s">.carte</span> {
+                        <span class="p">width</span>: 100%; <span class="p">height</span>: 100%;
+                        <span class="p">position</span>: relative;
+                        <span class="p">transform-style</span>: preserve-3d;
+                        <span class="p">transition</span>: transform 0.6s ease;
+                        }
+                        <span class="s">.carte-wrapper:hover .carte</span> {
+                        <span class="p">transform</span>: rotateY(180deg);
+                        }
+                        <span class="s">.recto, .verso</span> {
+                        <span class="p">position</span>: absolute; <span class="p">width</span>: 100%; <span
+                            class="p">height</span>: 100%;
+                        <span class="p">backface-visibility</span>: hidden;
+                        <span class="p">border-radius</span>: 12px;
+                        }
+                        <span class="s">.verso</span> {
+                        <span class="p">transform</span>: rotateY(180deg);
+                        <span class="p">background</span>: #1a2744;
+                        }</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════════════════════
+     MINI-PROJETS
+══════════════════════════════════════════════════════════════ -->
+    <div class="tp-section page-break">
+        <div class="tp-chapter-banner" data-ch="PRJ">
+            <div class="tp-chapter-label">Section Projets</div>
+            <div class="tp-chapter-title">Mini-Projets Intégrateurs</div>
+            <div class="tp-chapter-desc">5 projets complets mettant en œuvre toutes les compétences HTML5 & CSS3
+                acquises durant les TP.</div>
+        </div>
+
+        <!-- PROJECT 1 -->
+        <div class="project-card">
+            <div class="project-header" data-icon="🎓">
+                <div class="project-label">Mini-Projet 1 · Durée : 3h</div>
+                <div class="project-title">Site Vitrine ISET Kasserine</div>
+                <div class="project-tagline">Un site multi-pages complet avec navigation, contenu et pied de page.</div>
+            </div>
+            <div class="project-body">
+                <div class="project-specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Technologies</div>
+                        <div class="spec-value">HTML5 · CSS3 · Flexbox</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Niveau</div>
+                        <div class="spec-value">⭐⭐ Intermédiaire</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Fichiers attendus</div>
+                        <div class="spec-value">4 pages HTML + 1 CSS</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Validation</div>
+                        <div class="spec-value">W3C Validator</div>
+                    </div>
+                </div>
+
+                <div class="project-requirements">
+                    <div class="req-title">Exigences techniques</div>
+                    <ul class="req-list">
+                        <li>Page <code>index.html</code> avec hero section, présentation de l'ISET et 3 cartes de
+                            filières</li>
+                        <li>Page <code>departements.html</code> avec grille des départements (au moins 4), chacun avec
+                            description et nombre d'étudiants</li>
+                        <li>Page <code>admission.html</code> avec formulaire d'inscription complet et validé (nom,
+                            email, niveau, filière, photo)</li>
+                        <li>Page <code>contact.html</code> avec carte fictive, coordonnées et formulaire de message</li>
+                        <li>Navigation commune à toutes les pages via une feuille de style partagée
+                            <code>style.css</code></li>
+                        <li>Header sticky avec logo + menu flex + bouton "Connexion"</li>
+                        <li>Footer avec 3 colonnes en flexbox (liens, contact, réseaux sociaux fictifs)</li>
+                        <li>Palette de couleurs cohérente définie avec des variables CSS (<code>:root</code>)</li>
+                        <li class="bonus-req">Images de l'ISET remplacées par des zones colorées avec texte centré</li>
+                        <li class="bonus-req">Page responsive : s'adapte aux mobiles 375px et tablettes 768px</li>
+                    </ul>
+                </div>
+
+                <div class="eval-grid">
+                    <div class="eval-row header">
+                        <div>Critère d'évaluation</div>
+                        <div class="eval-pts">Points</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Structure HTML5 valide et sémantique (balises correctes, DOCTYPE, lang)</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Navigation inter-pages fonctionnelle et cohérente</div>
+                        <div class="eval-pts">2</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Mise en page Flexbox (header, footer, cartes)</div>
+                        <div class="eval-pts">4</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Formulaire d'inscription avec validation HTML5</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Cohérence visuelle, variables CSS, design soigné</div>
+                        <div class="eval-pts">4</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Bonus : Responsive design</div>
+                        <div class="eval-pts">+4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PROJECT 2 -->
+        <div class="project-card">
+            <div class="project-header" data-icon="👤">
+                <div class="project-label">Mini-Projet 2 · Durée : 2h</div>
+                <div class="project-title">Portfolio Personnel Responsive</div>
+                <div class="project-tagline">Une page unique (one-page) présentant votre profil d'étudiant développeur.
+                </div>
+            </div>
+            <div class="project-body">
+                <div class="project-specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Technologies</div>
+                        <div class="spec-value">HTML5 · CSS3 · Grid · Flexbox</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Niveau</div>
+                        <div class="spec-value">⭐⭐⭐ Avancé</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Fichiers</div>
+                        <div class="spec-value">1 HTML + 1 CSS</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Design</div>
+                        <div class="spec-value">Dark ou Light au choix</div>
+                    </div>
+                </div>
+
+                <div class="project-requirements">
+                    <div class="req-title">Sections obligatoires (one-page avec ancres)</div>
+                    <ul class="req-list">
+                        <li><strong>#hero</strong> — Photo/avatar, nom, titre, boutons CTA. Centrage parfait avec
+                            Flexbox. Hauteur <code>100vh</code>.</li>
+                        <li><strong>#about</strong> — Deux colonnes Grid : texte à gauche, compétences (barres de
+                            progression CSS) à droite</li>
+                        <li><strong>#projets</strong> — Grille CSS (<code>auto-fit, minmax(280px, 1fr)</code>) de 4
+                            cartes projets avec flip au hover</li>
+                        <li><strong>#competences</strong> — Icônes/badges des technologies sous forme de flex-wrap de
+                            pills</li>
+                        <li><strong>#contact</strong> — Formulaire de contact (nom, email, message) + coordonnées en
+                            flex</li>
+                        <li>Navigation fixe avec liens d'ancre (<code>#hero</code>, <code>#about</code>…) et scroll
+                            smooth via CSS</li>
+                        <li>Animations d'apparition au chargement avec <code>@keyframes fadeIn</code></li>
+                        <li class="bonus-req">Dark mode avec <code>@media (prefers-color-scheme: dark)</code></li>
+                        <li class="bonus-req">Barres de progression CSS animées (largeur 0% → valeur finale en 1s)</li>
+                    </ul>
+                </div>
+
+                <div class="eval-grid">
+                    <div class="eval-row header">
+                        <div>Critère d'évaluation</div>
+                        <div class="eval-pts">Points</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Structure one-page avec ancres fonctionnelles</div>
+                        <div class="eval-pts">2</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Utilisation correcte de Grid et Flexbox</div>
+                        <div class="eval-pts">4</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Responsive (mobile, tablette, desktop)</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Effet flip 3D sur les cartes projets</div>
+                        <div class="eval-pts">2</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Animations CSS3 (@keyframes)</div>
+                        <div class="eval-pts">2</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Qualité visuelle globale et cohérence</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Bonus : Dark mode</div>
+                        <div class="eval-pts">+4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PROJECT 3 -->
+        <div class="project-card">
+            <div class="project-header" data-icon="🛒">
+                <div class="project-label">Mini-Projet 3 · Durée : 2h30</div>
+                <div class="project-title">Page Produit E-Commerce</div>
+                <div class="project-tagline">Interface d'une page produit style Amazon/Jumia avec CSS avancé.</div>
+            </div>
+            <div class="project-body">
+                <div class="project-specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Technologies</div>
+                        <div class="spec-value">HTML5 · CSS3 · Flexbox · Grid</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Niveau</div>
+                        <div class="spec-value">⭐⭐⭐ Avancé</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Pages</div>
+                        <div class="spec-value">1 page produit complète</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Focus</div>
+                        <div class="spec-value">CSS pur, pas de JS</div>
+                    </div>
+                </div>
+
+                <div class="project-requirements">
+                    <div class="req-title">Composants à réaliser</div>
+                    <ul class="req-list">
+                        <li><strong>Header</strong> : Logo + barre de recherche (flexbox) + icônes panier/profil</li>
+                        <li><strong>Zone produit</strong> : Grid 2 colonnes — galerie images à gauche (miniatures en
+                            flex) + infos à droite</li>
+                        <li><strong>Info produit</strong> : Titre, prix (<code>&lt;del&gt;</code> ancien prix +
+                            nouveau), étoiles en CSS pur (<code>::before</code> + <code>content:"★"</code>), stock</li>
+                        <li><strong>Formulaire d'achat</strong> : Sélecteur de quantité (type number), taille (select),
+                            boutons "Ajouter au panier" et "Acheter maintenant"</li>
+                        <li><strong>Onglets CSS pur</strong> : Description / Caractéristiques / Avis — navigables via
+                            <code>:target</code> ou checkboxes cachées</li>
+                        <li><strong>Section "Produits similaires"</strong> : grille auto-fit de 4 cartes produits</li>
+                        <li class="bonus-req">Panier coulissant visible via <code>:focus-within</code> ou
+                            <code>:checked</code> (CSS pur)</li>
+                        <li class="bonus-req">Responsive : sur mobile, les 2 colonnes produit passent en colonne unique
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="eval-grid">
+                    <div class="eval-row header">
+                        <div>Critère d'évaluation</div>
+                        <div class="eval-pts">Points</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Layout Grid 2 colonnes correct</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Galerie miniatures en Flexbox</div>
+                        <div class="eval-pts">2</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Étoiles de notation en CSS (<code>::before</code>)</div>
+                        <div class="eval-pts">2</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Onglets fonctionnels sans JavaScript</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Grille produits similaires responsive</div>
+                        <div class="eval-pts">2</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Design soigné, animations sur les boutons</div>
+                        <div class="eval-pts">4</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Bonus : Panier CSS pur + Responsive</div>
+                        <div class="eval-pts">+4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PROJECT 4 -->
+        <div class="project-card">
+            <div class="project-header" data-icon="📊">
+                <div class="project-label">Mini-Projet 4 · Durée : 2h</div>
+                <div class="project-title">Dashboard Administratif</div>
+                <div class="project-tagline">Interface d'administration avec sidebar, statistiques et tableaux de
+                    données.</div>
+            </div>
+            <div class="project-body">
+                <div class="project-specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Technologies</div>
+                        <div class="spec-value">HTML5 · CSS3 · Grid · Flexbox</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Niveau</div>
+                        <div class="spec-value">⭐⭐⭐ Avancé</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Thème</div>
+                        <div class="spec-value">Dark ou Light</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Focus</div>
+                        <div class="spec-value">Layout Grid complexe</div>
+                    </div>
+                </div>
+
+                <div class="project-requirements">
+                    <div class="req-title">Structure du dashboard</div>
+                    <ul class="req-list">
+                        <li><strong>Layout général</strong> : CSS Grid — sidebar fixe (250px) à gauche + zone principale
+                            à droite (<code>grid-template-areas</code>)</li>
+                        <li><strong>Sidebar</strong> : logo, menu vertical flex avec icônes (caractères Unicode),
+                            section profil en bas</li>
+                        <li><strong>Header intérieur</strong> : titre de page + barre de recherche + notification badge
+                            + avatar</li>
+                        <li><strong>KPI Cards</strong> : grille de 4 cartes statistiques (étudiants, cours, TP, taux de
+                            réussite) avec icône, valeur et tendance</li>
+                        <li><strong>Tableau HTML</strong> : liste de 10 étudiants stylisée (alternance de lignes, hover,
+                            badges de statut colorés)</li>
+                        <li><strong>Graphique CSS pur</strong> : barres verticales (<code>div</code> avec
+                            <code>height</code>) représentant les notes par matière</li>
+                        <li>Variables CSS pour le thème (<code>--bg-primary</code>, <code>--text</code>,
+                            <code>--accent</code>…)</li>
+                        <li class="bonus-req">Sidebar repliable sur mobile avec
+                            <code>transform: translateX(-100%)</code></li>
+                        <li class="bonus-req">Animations d'apparition des KPI avec <code>@keyframes countUp</code></li>
+                    </ul>
+                </div>
+
+                <div class="eval-grid">
+                    <div class="eval-row header">
+                        <div>Critère d'évaluation</div>
+                        <div class="eval-pts">Points</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Layout Grid sidebar + main correct</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Sidebar avec navigation flex verticale</div>
+                        <div class="eval-pts">2</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>KPI Cards avec grille responsive</div>
+                        <div class="eval-pts">2</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Tableau HTML stylisé (hover, alternance, badges)</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Graphique à barres CSS pur</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Cohérence du thème via variables CSS</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Bonus : Sidebar responsive + Animations</div>
+                        <div class="eval-pts">+4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PROJECT 5 -->
+        <div class="project-card">
+            <div class="project-header" data-icon="🎨">
+                <div class="project-label">Mini-Projet 5 · Durée : 3h — Projet Libre</div>
+                <div class="project-title">Projet Libre : Interface de votre choix</div>
+                <div class="project-tagline">Démontrez votre maîtrise complète en créant une interface originale.</div>
+            </div>
+            <div class="project-body">
+                <div class="project-specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Technologies</div>
+                        <div class="spec-value">HTML5 · CSS3 complet</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Niveau</div>
+                        <div class="spec-value">⭐⭐⭐ Expert</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Originalité</div>
+                        <div class="spec-value">Fortement valorisée</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Min. pages</div>
+                        <div class="spec-value">2 pages ou 1 one-page</div>
+                    </div>
+                </div>
+
+                <div class="project-requirements">
+                    <div class="req-title">Idées suggérées (au choix ou autre idée originale)</div>
+                    <ul class="req-list">
+                        <li><strong>Blog de cours</strong> : articles avec mise en page éditorial, catégories,
+                            pagination CSS, carte auteur</li>
+                        <li><strong>Application météo</strong> : interface avec carte de ville, température, icônes
+                            météo en CSS, prévisions en grille</li>
+                        <li><strong>Menu de restaurant</strong> : carte stylisée avec catégories, images, prix,
+                            formulaire de réservation</li>
+                        <li><strong>Application de quiz</strong> : questions/réponses avec radio buttons stylisés, barre
+                            de progression, résultats</li>
+                        <li><strong>Landing page produit</strong> : hero animé, features section, pricing cards, FAQ,
+                            CTA</li>
+                    </ul>
+
+                    <div class="req-title" style="margin-top:20px">Contraintes obligatoires (quelle que soit l'idée)
+                    </div>
+                    <ul class="req-list">
+                        <li>Au moins une mise en page Flexbox ET une mise en page Grid</li>
+                        <li>Responsive sur 3 breakpoints (mobile 375px / tablette 768px / desktop 1280px)</li>
+                        <li>Variables CSS (<code>:root</code>) pour la palette de couleurs</li>
+                        <li>Au moins 2 animations ou transitions CSS3 originales</li>
+                        <li>Un formulaire HTML5 avec validation native</li>
+                        <li>HTML sémantique (<code>header</code>, <code>main</code>, <code>nav</code>,
+                            <code>article</code>, <code>footer</code>…)</li>
+                        <li>Fichier CSS externe séparé du HTML</li>
+                    </ul>
+                </div>
+
+                <div class="eval-grid">
+                    <div class="eval-row header">
+                        <div>Critère d'évaluation</div>
+                        <div class="eval-pts">Points</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>HTML5 sémantique valide (W3C)</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>CSS organisé (variables, commentaires, convention de nommage)</div>
+                        <div class="eval-pts">2</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Flexbox et Grid correctement utilisés</div>
+                        <div class="eval-pts">4</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Responsive design complet</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Animations CSS3 originales</div>
+                        <div class="eval-pts">3</div>
+                    </div>
+                    <div class="eval-row">
+                        <div>Originalité et qualité visuelle</div>
+                        <div class="eval-pts">5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+            style="text-align:center;padding:40px 0 24px;border-top:1px solid var(--border);color:var(--text3);font-size:12px;margin-top:20px">
+            <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">Travaux Pratiques — HTML5
+                &amp; CSS3</div>
+            <div>Ahmed Ghodhbani · ISET Kasserine · Département Technologies de l'Informatique · 2024/2025</div>
+            <div style="margin-top:12px;font-size:11px;color:var(--border)">
+                Tous les exercices doivent être validés sur <strong style="color:var(--text3)">validator.w3.org</strong>
+                avant rendu
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
